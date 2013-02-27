@@ -13,7 +13,7 @@ namespace _419Shredder
         {
             // Check whitelist
             if (isWhitelisted(mail.sender))
-                return true;
+                return false;
 
             // Spamminess
             int spamminess = 0;
@@ -21,12 +21,10 @@ namespace _419Shredder
 
             // CAPS LOCK TITLES
             if (mail.subject == mail.subject.ToUpperInvariant())
-                spamminess += 70;
+                spamminess += 50;
 
             // = Keyword filtering =
-            string[] keywords = {"million", "yours truly", "international monetary fund", "united nations", "dollars",
-                                 "nigeria", "full name", "mobile/tel", "00,000", "00.000", "donat", "drug", "medicine",
-                                 "online pharmacy", "barrister", "compensation"};
+            string[] keywords = { };
 
             if (mail.fullText != null)
             {

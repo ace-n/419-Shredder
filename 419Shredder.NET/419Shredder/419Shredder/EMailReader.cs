@@ -68,7 +68,7 @@ namespace _419Shredder
             {
             }
             output.subject = msg.Headers.Subject;
-            // output.sender = msg.Headers.Sender.MailAddress.Address;
+            output.sender = msg.Headers.From.Address;
 
             // Return struct
             return output;
