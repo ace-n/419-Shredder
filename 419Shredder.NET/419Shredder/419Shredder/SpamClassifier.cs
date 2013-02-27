@@ -23,20 +23,18 @@ namespace _419Shredder
             if (mail.subject == mail.subject.ToUpperInvariant())
                 spamminess += 70;
 
-            // million, yours truly, yahoo emails, IMF, UN
-
             // = Keyword filtering =
-            //  NOTE: COUNT EACH MATCH!
             string[] keywords = {"million", "yours truly", "international monetary fund", "united nations", "dollars",
-                                 "nigeria", "full name", "mobile/tel", "00,000", "donat", "drug", "online pharmacy",
-                                 "medicine", "barrister"};
+                                 "nigeria", "full name", "mobile/tel", "00,000", "00.000", "donat", "drug", "medicine",
+                                 "online pharmacy", "barrister", "compensation"};
+
             if (mail.fullText != null)
             {
                 string toLower = mail.fullText.ToLowerInvariant();
                 foreach (string s in keywords)
                 {
                     // Mail body
-                    spamminess += 20 * Regex.Matches(mail.fullText, s).Count;
+                    spamminess += 20 * Regex.Matches(toLower, s).Count;
 
                     // Subject
                     spamminess += 20 * Regex.Matches(mail.subject, s).Count;
@@ -48,6 +46,7 @@ namespace _419Shredder
             }
 
             // Numerical emails (xxxx###@domain.com)
+            // TODO
 
             // Return result
             return spamminess > threshold;
@@ -63,7 +62,7 @@ namespace _419Shredder
             address = address.ToLowerInvariant();
             
             // List of keywords that exist in white-listed e-mail addresses
-            string[] whiteListWords = {"@illinois.edu", "@uiuc.edu"}; // An example
+            string[] whiteListWords = {"illinois.edu", "uiuc.edu"}; // An example
 
             // Check keywords
             foreach (string keyWord in whiteListWords)

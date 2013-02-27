@@ -55,8 +55,8 @@ namespace _419Shredder
             // Get message count
             int msgCount = EMailReader.getMailCount();
 
-            // Iterate through messages (only checks the past 30)
-            for (int i = msgCount-1; i > Math.Max(0, msgCount-100); i--)
+            // Iterate through messages (only checks the past 50)
+            for (int i = msgCount-1; i > Math.Max(0, msgCount-50); i--)
             {
                 EMail msg = EMailReader.getMailMessage(i);
 
